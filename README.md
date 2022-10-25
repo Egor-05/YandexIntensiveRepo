@@ -1,4 +1,4 @@
-Для активации venv:   
+Для активации venv:
 python -m venv venv  
 source venv/Scripts/activate  
 
@@ -6,4 +6,7 @@ source venv/Scripts/activate
 pip install -r requirements.txt
 
 Для запуска проекта:  
-python manage.py runserver
+python manage.py runserver  
+Также требуется добавить в файл .env:  
+SECRET_KEY=Ключ django
+DEBUG=True/False  
