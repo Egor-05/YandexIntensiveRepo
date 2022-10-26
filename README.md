@@ -8,5 +8,5 @@ pip install -r requirements.txt
 Для запуска проекта:  
 python manage.py runserver  
 Также требуется добавить в файл .env:  
-SECRET_KEY=Ключ django
+SECRET_KEY=Ключ django  
 DEBUG=True/False  
