@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, re_path
 import catalog.views as views
 
 
 urlpatterns = [
     path("catalog/", views.item_list),
-    path("catalog/<int:num>/", views.item_details),
+    re_path(r"catalog/(?P<num>[1-9]\d*)", views.item_details),
 ]
