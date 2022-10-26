@@ -12,7 +12,7 @@ class StaticURLTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_catalog_value_endpoint(self):
-        for i in [2.24, -3, '2wjoiui2']:
+        for i in [2.24, -3, "2wjoiui2"]:
             url = f"/catalog/{i}/"
             response = Client().get(url)
             with self.subTest(url=url):
