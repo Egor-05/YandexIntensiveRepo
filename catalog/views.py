@@ -9,5 +9,4 @@ def item_list(request):
 
 
 def item_details(request, num):
-    print(num)
     return HttpResponse("Подробно элемент", status=200)
