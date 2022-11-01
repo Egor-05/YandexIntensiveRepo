@@ -1,5 +1,7 @@
 from django.db import models
-from .validators import in_value_validator, only_chars_validator, num_compare_validator
+from .validators import (in_value_validator,
+                         only_chars_validator,
+                         num_compare_validator)
 from core.models import AbstractModelForCatalog
 
 # Create your models here.

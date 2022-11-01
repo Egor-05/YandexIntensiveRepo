@@ -6,7 +6,7 @@ def in_value_validator(value):
     for i in words:
         if i in value.lower():
             return value
-    raise ValidationError(f"В описании отсутствуют требуемые слова")
+    raise ValidationError("В описании отсутствуют требуемые слова")
 
 
 def only_chars_validator(value):

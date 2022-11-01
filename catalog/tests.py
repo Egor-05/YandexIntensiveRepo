@@ -1,6 +1,6 @@
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
-from .models import *
+from .models import CatalogCategory, CatalogTag, CatalogItem
 
 
 # Create your tests here.
@@ -33,17 +33,25 @@ class ModelsTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.category = CatalogCategory.objects.create(
-            name="Тестовая категория", slug="test-category-slug", is_published=True
+            name="Тестовая категория",
+            slug="test-category-slug",
+            is_published=True
         )
         cls.item = CatalogItem.objects.create(
-            name="Товар", text="превосходно", is_published=True, category=cls.category
+            name="Товар",
+            text="превосходно",
+            is_published=True,
+            category=cls.category
         )
 
     def test_item_word_validator_positive(self):
         item_count = CatalogItem.objects.count()
 
         self.item = CatalogItem(
-            name="Товар", text="превосходно", is_published=True, category=self.category
+            name="Товар",
+            text="превосходно",
+            is_published=True,
+            category=self.category
         )
 
         self.item.full_clean()
@@ -56,7 +64,10 @@ class ModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.item1 = CatalogItem(
-                name="Товар", text="test", is_published=True, category=self.category
+                name="Товар",
+                text="test",
+                is_published=True,
+                category=self.category
             )
 
             self.item1.full_clean()
@@ -93,7 +104,10 @@ class ModelsTests(TestCase):
         category_count = CatalogCategory.objects.count()
 
         self.category1 = CatalogCategory(
-            name="Категория", slug="test-category1-slug", is_published=True, weight=100
+            name="Категория",
+            slug="test-category1-slug",
+            is_published=True,
+            weight=100
         )
 
         self.category1.full_clean()
@@ -118,7 +132,9 @@ class ModelsTests(TestCase):
         category_count = CatalogCategory.objects.count()
 
         self.category1 = CatalogCategory(
-            name="Категория", slug="test-category1-slug", is_published=True, weight=100
+            name="Категория",
+            slug="test-category1-slug",
+            is_published=True, weight=100
         )
 
         self.category1.full_clean()
