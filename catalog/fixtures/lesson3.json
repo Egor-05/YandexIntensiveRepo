@@ -1,0 +1,111 @@
+[
+{
+  "model": "catalog.catalogcategory",
+  "pk": 2,
+  "fields": {
+    "slug": "category1-tag",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.catalogcategory",
+  "pk": 3,
+  "fields": {
+    "slug": "category2-tag",
+    "weight": 100
+  }
+},
+{
+  "model": "catalog.catalogtag",
+  "pk": 9,
+  "fields": {
+    "slug": "item-tag2"
+  }
+},
+{
+  "model": "catalog.catalogtag",
+  "pk": 10,
+  "fields": {
+    "slug": "item-tag1"
+  }
+},
+{
+  "model": "catalog.catalogtag",
+  "pk": 11,
+  "fields": {
+    "slug": "item-tag3"
+  }
+},
+{
+  "model": "catalog.catalogtag",
+  "pk": 12,
+  "fields": {
+    "slug": "item-tag4"
+  }
+},
+{
+  "model": "catalog.catalogtag",
+  "pk": 13,
+  "fields": {
+    "slug": "item-tag5"
+  }
+},
+{
+  "model": "catalog.catalogitem",
+  "pk": 14,
+  "fields": {
+    "text": "Превосходно",
+    "category": 2,
+    "tags": [
+      9,
+      10
+    ]
+  }
+},
+{
+  "model": "catalog.catalogitem",
+  "pk": 15,
+  "fields": {
+    "text": "Превосходно",
+    "category": 2,
+    "tags": [
+      9
+    ]
+  }
+},
+{
+  "model": "catalog.catalogitem",
+  "pk": 16,
+  "fields": {
+    "text": "Превосходно",
+    "category": 3,
+    "tags": [
+      11,
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.catalogitem",
+  "pk": 17,
+  "fields": {
+    "text": "Превосходно",
+    "category": 3,
+    "tags": [
+      12
+    ]
+  }
+},
+{
+  "model": "catalog.catalogitem",
+  "pk": 18,
+  "fields": {
+    "text": "Превосходно",
+    "category": 2,
+    "tags": [
+      11,
+      13
+    ]
+  }
+}
+]

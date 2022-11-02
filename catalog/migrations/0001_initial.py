@@ -64,8 +64,7 @@ class Migration(migrations.Migration):
                 (
                     "text",
                     models.TextField(
-                        default="",
-                        validators=[catalog.validators.in_value_validator]
+                        default="", validators=[catalog.validators.in_value_validator]
                     ),
                 ),
             ],

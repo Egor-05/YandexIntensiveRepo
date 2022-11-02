@@ -10,6 +10,7 @@ class Item(admin.ModelAdmin):
         "name",
         "is_published",
     )
+    filter_horizontal = ("tags",)
 
     def get_list_editable(self, request):
         """

@@ -14,13 +14,11 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterModelOptions(
             name="catalogcategory",
-            options={"verbose_name": "Категория",
-                     "verbose_name_plural": "Категории"},
+            options={"verbose_name": "Категория", "verbose_name_plural": "Категории"},
         ),
         migrations.AlterModelOptions(
             name="catalogitem",
-            options={"verbose_name": "Товар",
-                     "verbose_name_plural": "Товары"},
+            options={"verbose_name": "Товар", "verbose_name_plural": "Товары"},
         ),
         migrations.AlterModelOptions(
             name="catalogtag",

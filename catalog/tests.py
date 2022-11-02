@@ -33,27 +33,20 @@ class ModelsTests(TestCase):
     def setUpClass(cls):
         super().setUpClass()
         cls.category = CatalogCategory.objects.create(
-            name="Тестовая категория",
-            slug="test-category-slug",
-            is_published=True
+            name="Тестовая категория", slug="test-category-slug", is_published=True
         )
-        cls.item = CatalogItem.objects.create(
-            name="Товар",
-            text="превосходно",
+        cls.tag = CatalogTag.objects.create(
+            name="Тэг",
+            slug="test_tag_slug",
             is_published=True,
-            category=cls.category
         )
 
     def test_item_word_validator_positive(self):
         item_count = CatalogItem.objects.count()
 
         self.item = CatalogItem(
-            name="Товар",
-            text="превосходно",
-            is_published=True,
-            category=self.category
+            name="Товар", text="превосходно", is_published=True, category=self.category
         )
-
         self.item.full_clean()
         self.item.save()
 
@@ -64,10 +57,7 @@ class ModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.item1 = CatalogItem(
-                name="Товар",
-                text="test",
-                is_published=True,
-                category=self.category
+                name="Товар", text="test", is_published=True, category=self.category
             )
 
             self.item1.full_clean()
@@ -78,9 +68,7 @@ class ModelsTests(TestCase):
     def test_tag_slug_validator_positive(self):
         tag_count = CatalogTag.objects.count()
 
-        self.tag = CatalogTag(
-            name="Тэг", slug="test-tag-slug", is_published=True, item=self.item
-        )
+        self.tag = CatalogTag(name="Тэг", slug="test-tag-slug", is_published=True)
 
         self.tag.full_clean()
         self.tag.save()
@@ -91,9 +79,7 @@ class ModelsTests(TestCase):
         tag_count = CatalogTag.objects.count()
 
         with self.assertRaises(ValidationError):
-            self.tag = CatalogTag(
-                name="Тэг", slug="шпголирои", is_published=True, item=self.item
-            )
+            self.tag = CatalogTag(name="Тэг", slug="шпголирои", is_published=True)
 
             self.tag.full_clean()
             self.tag.save()
@@ -104,10 +90,7 @@ class ModelsTests(TestCase):
         category_count = CatalogCategory.objects.count()
 
         self.category1 = CatalogCategory(
-            name="Категория",
-            slug="test-category1-slug",
-            is_published=True,
-            weight=100
+            name="Категория", slug="test-category1-slug", is_published=True, weight=100
         )
 
         self.category1.full_clean()
@@ -132,9 +115,7 @@ class ModelsTests(TestCase):
         category_count = CatalogCategory.objects.count()
 
         self.category1 = CatalogCategory(
-            name="Категория",
-            slug="test-category1-slug",
-            is_published=True, weight=100
+            name="Категория", slug="test-category1-slug", is_published=True, weight=100
         )
 
         self.category1.full_clean()

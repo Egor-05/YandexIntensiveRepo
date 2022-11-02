@@ -1,7 +1,5 @@
 from django.db import models
-from .validators import (in_value_validator,
-                         only_chars_validator,
-                         num_compare_validator)
+from .validators import in_value_validator, only_chars_validator, num_compare_validator
 from core.models import AbstractModelForCatalog
 
 # Create your models here.
@@ -13,7 +11,7 @@ class CatalogCategory(AbstractModelForCatalog):
         default="",
         validators=[only_chars_validator],
         max_length=200,
-        verbose_name="Tag",
+        verbose_name="Тэг",
     )
     weight = models.IntegerField(
         default=100, validators=[num_compare_validator], verbose_name="Вес"
@@ -27,6 +25,23 @@ class CatalogCategory(AbstractModelForCatalog):
         verbose_name_plural = "Категории"
 
 
+class CatalogTag(AbstractModelForCatalog):
+    slug = models.CharField(
+        unique=True,
+        default="",
+        validators=[only_chars_validator],
+        max_length=200,
+        verbose_name="Тэг",
+    )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Тэг"
+        verbose_name_plural = "Тэги"
+
+
 class CatalogItem(AbstractModelForCatalog):
     text = models.TextField(
         default="", validators=[in_value_validator], verbose_name="Текст"
@@ -34,6 +49,7 @@ class CatalogItem(AbstractModelForCatalog):
     category = models.ForeignKey(
         CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
     )
+    tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
 
     def __str__(self):
         return self.name
@@ -41,22 +57,3 @@ class CatalogItem(AbstractModelForCatalog):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
-
-
-class CatalogTag(AbstractModelForCatalog):
-    slug = models.CharField(
-        unique=True,
-        default="",
-        validators=[only_chars_validator],
-        max_length=200,
-        verbose_name="Tag",
-    )
-    item = models.ForeignKey(
-        CatalogItem, on_delete=models.CASCADE, verbose_name="Товар"
-    )
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Tag"

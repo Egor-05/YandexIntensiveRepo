@@ -12,3 +12,5 @@ jobs:
           python-version: 3.9
       - name: flake8 checking
         uses: py-actions/flake8@v2
+        with:
+          args: "--max-line-length=100"
