@@ -1,12 +1,15 @@
 from django.core.exceptions import ValidationError
+from functools import wraps
 
 
-def in_value_validator(value):
-    words = ["превосходно", "роскошно"]
-    for i in words:
-        if i in value.lower():
-            return value
-    raise ValidationError("В описании отсутствуют требуемые слова")
+def in_value_validator(*words):
+    @wraps(in_value_validator)
+    def func(value):
+        for i in words:
+            if i in value.lower():
+                return value
+        raise ValidationError("В описании отсутствуют требуемые слова")
+    return func
 
 
 def only_chars_validator(value):

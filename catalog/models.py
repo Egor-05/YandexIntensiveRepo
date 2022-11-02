@@ -44,7 +44,9 @@ class CatalogTag(AbstractModelForCatalog):
 
 class CatalogItem(AbstractModelForCatalog):
     text = models.TextField(
-        default="", validators=[in_value_validator], verbose_name="Текст"
+        default="",
+        validators=[in_value_validator('превосходно', 'роскошно')],
+        verbose_name="Текст"
     )
     category = models.ForeignKey(
         CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
