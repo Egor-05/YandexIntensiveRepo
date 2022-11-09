@@ -57,7 +57,7 @@ class ModelsTests(TestCase):
 
         with self.assertRaises(ValidationError):
             self.item1 = CatalogItem(
-                name="Товар", text="test", is_published=True, category=self.category
+                name="Товар", text="test", is_published=True, category=self.category, upload=""
             )
 
             self.item1.full_clean()

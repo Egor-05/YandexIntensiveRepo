@@ -7,19 +7,23 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0005_auto_20221102_2201'),
+        ("catalog", "0005_auto_20221102_2201"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='catalogitem',
-            name='upload',
-            field=models.ImageField(default='', upload_to='uploads/'),
+            model_name="catalogitem",
+            name="upload",
+            field=models.ImageField(default="", upload_to="uploads/"),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='catalogitem',
-            name='text',
-            field=models.TextField(default='', validators=[catalog.validators.in_value_validator], verbose_name='Текст'),
+            model_name="catalogitem",
+            name="text",
+            field=models.TextField(
+                default="",
+                validators=[catalog.validators.in_value_validator],
+                verbose_name="Текст",
+            ),
         ),
     ]

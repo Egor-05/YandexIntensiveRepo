@@ -9,6 +9,7 @@ def in_value_validator(*words):
             if i in value.lower():
                 return value
         raise ValidationError("В описании отсутствуют требуемые слова")
+
     return func
 
 

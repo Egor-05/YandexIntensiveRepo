@@ -13,14 +13,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="abstractmodelforcatalog",
             name="is_published",
-            field=models.BooleanField(default=True,
-                                      verbose_name="Is_published"),
+            field=models.BooleanField(default=True, verbose_name="Is_published"),
         ),
         migrations.AlterField(
             model_name="abstractmodelforcatalog",
             name="name",
-            field=models.CharField(default="",
-                                   max_length=150,
-                                   verbose_name="Название"),
+            field=models.CharField(default="", max_length=150, verbose_name="Название"),
         ),
     ]

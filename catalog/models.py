@@ -49,8 +49,8 @@ class CatalogTag(AbstractModelForCatalog):
 class CatalogItem(AbstractModelForCatalog):
     text = models.TextField(
         default="",
-        validators=[in_value_validator('превосходно', 'роскошно')],
-        verbose_name="Текст"
+        validators=[in_value_validator("превосходно", "роскошно")],
+        verbose_name="Текст",
     )
     category = models.ForeignKey(
         CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
@@ -64,24 +64,26 @@ class CatalogItem(AbstractModelForCatalog):
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
 
-    upload = models.ImageField(upload_to='uploads/')
+    upload = models.ImageField(upload_to="uploads/")
 
     @property
     def get_img(self):
-        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
+        return get_thumbnail(self.upload, "300x300", crop="center", quality=51)
 
     def image_tmb(self):
         if self.upload:
             return mark_safe(f'<img src="{self.get_img.url}">')
-        return 'Нет изображения'
+        return "Нет изображения"
 
-    image_tmb.short_description = 'Превью'
+    image_tmb.short_description = "Превью"
     image_tmb.allow_tags = True
 
 
 class Photo(models.Model):
-    item = models.ForeignKey(CatalogItem, on_delete=models.CASCADE, related_name='photos')
-    photo = models.ImageField(upload_to='photos/')
+    item = models.ForeignKey(
+        CatalogItem, on_delete=models.CASCADE, related_name="photos"
+    )
+    photo = models.ImageField(upload_to="photos/")
 
     def save(self, *args, **kwargs):
         super(Photo, self).save(*args, **kwargs)

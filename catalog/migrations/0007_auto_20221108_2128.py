@@ -8,21 +8,40 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0006_auto_20221108_2047'),
+        ("catalog", "0006_auto_20221108_2047"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='catalogitem',
-            name='text',
-            field=models.TextField(default='', validators=[catalog.validators.in_value_validator], verbose_name='Текст'),
+            model_name="catalogitem",
+            name="text",
+            field=models.TextField(
+                default="",
+                validators=[catalog.validators.in_value_validator],
+                verbose_name="Текст",
+            ),
         ),
         migrations.CreateModel(
-            name='Photo',
+            name="Photo",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('photo', models.ImageField(upload_to='photos/')),
-                ('item', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='photos', to='catalog.catalogitem')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("photo", models.ImageField(upload_to="photos/")),
+                (
+                    "item",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="photos",
+                        to="catalog.catalogitem",
+                    ),
+                ),
             ],
         ),
     ]

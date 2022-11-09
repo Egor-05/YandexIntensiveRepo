@@ -7,20 +7,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0004_auto_20221102_1223'),
+        ("catalog", "0004_auto_20221102_1223"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='catalogitem',
-            name='tags',
-            field=models.ManyToManyField(to='catalog.CatalogTag', verbose_name='Тэги'),
+            model_name="catalogitem",
+            name="tags",
+            field=models.ManyToManyField(to="catalog.CatalogTag", verbose_name="Тэги"),
         ),
         migrations.AlterField(
-            model_name='catalogitem',
-            name='text',
-            field=models.TextField(default='',
-                                   validators=[catalog.validators.in_value_validator],
-                                   verbose_name='Текст'),
+            model_name="catalogitem",
+            name="text",
+            field=models.TextField(
+                default="",
+                validators=[catalog.validators.in_value_validator],
+                verbose_name="Текст",
+            ),
         ),
     ]
