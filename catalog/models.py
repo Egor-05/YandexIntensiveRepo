@@ -1,6 +1,10 @@
 from django.db import models
 from .validators import in_value_validator, only_chars_validator, num_compare_validator
 from core.models import AbstractModelForCatalog
+from sorl.thumbnail import get_thumbnail
+from django.utils.safestring import mark_safe
+from PIL import Image
+
 
 # Create your models here.
 
@@ -59,3 +63,29 @@ class CatalogItem(AbstractModelForCatalog):
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
+
+    upload = models.ImageField(upload_to='uploads/')
+
+    @property
+    def get_img(self):
+        return get_thumbnail(self.upload, '300x300', crop='center', quality=51)
+
+    def image_tmb(self):
+        if self.upload:
+            return mark_safe(f'<img src="{self.get_img.url}">')
+        return 'Нет изображения'
+
+    image_tmb.short_description = 'Превью'
+    image_tmb.allow_tags = True
+
+
+class Photo(models.Model):
+    item = models.ForeignKey(CatalogItem, on_delete=models.CASCADE, related_name='photos')
+    photo = models.ImageField(upload_to='photos/')
+
+    def save(self, *args, **kwargs):
+        super(Photo, self).save(*args, **kwargs)
+        img = Image.open(self.photo.path)
+        if img.height > 300 or img.width > 300:
+            img.thumbnail((300, 300))
+        img.save(self.photo.path, quality=51, optimize=True)

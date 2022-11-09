@@ -1,7 +1,11 @@
 from django.contrib import admin
-from .models import CatalogTag, CatalogItem, CatalogCategory
+from .models import CatalogTag, CatalogItem, CatalogCategory, Photo
 
 # Register your models here.
+
+
+class Photos(admin.StackedInline):
+    model = Photo
 
 
 @admin.register(CatalogItem)
@@ -9,8 +13,10 @@ class Item(admin.ModelAdmin):
     list_display = (
         "name",
         "is_published",
+        "upload",
     )
     filter_horizontal = ("tags",)
+    inlines = [Photos]
 
     def get_list_editable(self, request):
         """

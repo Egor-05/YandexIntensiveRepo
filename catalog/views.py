@@ -1,11 +1,11 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 from django.http import HttpResponse
 
 # Create your views here.
 
 
 def item_list(request):
-    return HttpResponse("Список элементов", status=200)
+    return render(request, 'catalog.html', {})
 
 
 def item_details(request, num):
