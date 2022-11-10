@@ -1,22 +1,30 @@
 from django.contrib import admin
-from .models import CatalogTag, CatalogItem, CatalogCategory, Photo
+from .models import CatalogTag, CatalogItem, CatalogCategory, Photo, Photos
 
 # Register your models here.
 
 
-class Photos(admin.StackedInline):
-    model = Photo
+class PhotosAdmin(admin.StackedInline):
+    model = Photos
+
+
+@admin.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "image_tmb",
+    )
 
 
 @admin.register(CatalogItem)
-class Item(admin.ModelAdmin):
+class ItemAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "is_published",
-        "upload",
+        "image_tmb",
     )
     filter_horizontal = ("tags",)
-    inlines = [Photos]
+    inlines = [PhotosAdmin]
 
     def get_list_editable(self, request):
         """
@@ -32,11 +40,11 @@ class Item(admin.ModelAdmin):
         with values returned by our custom method implementation.
         """
         self.list_editable = self.get_list_editable(request)
-        return super(Item, self).get_changelist_instance(request)
+        return super(ItemAdmin, self).get_changelist_instance(request)
 
 
 @admin.register(CatalogTag)
-class Tag(admin.ModelAdmin):
+class TagAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "is_published",
@@ -44,7 +52,7 @@ class Tag(admin.ModelAdmin):
 
 
 @admin.register(CatalogCategory)
-class Category(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     list_display = (
         "name",
         "is_published",

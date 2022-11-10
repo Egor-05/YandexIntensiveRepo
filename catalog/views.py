@@ -5,7 +5,7 @@ from django.http import HttpResponse
 
 
 def item_list(request):
-    return render(request, "catalog.html", {})
+    return render(request, "catalog.html", {'title': 'Список товаров'})
 
 
 def item_details(request, num):

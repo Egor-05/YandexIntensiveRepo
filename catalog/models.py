@@ -46,24 +46,8 @@ class CatalogTag(AbstractModelForCatalog):
         verbose_name_plural = "Тэги"
 
 
-class CatalogItem(AbstractModelForCatalog):
-    text = models.TextField(
-        default="",
-        validators=[in_value_validator("превосходно", "роскошно")],
-        verbose_name="Текст",
-    )
-    category = models.ForeignKey(
-        CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
-    )
-    tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = "Товар"
-        verbose_name_plural = "Товары"
-
+class Photo(models.Model):
+    name = models.CharField(max_length=150, default="", verbose_name="Название")
     upload = models.ImageField(upload_to="uploads/")
 
     @property
@@ -78,15 +62,51 @@ class CatalogItem(AbstractModelForCatalog):
     image_tmb.short_description = "Превью"
     image_tmb.allow_tags = True
 
+    def __str__(self):
+        return self.name
 
-class Photo(models.Model):
+    class Meta:
+        verbose_name = "Превью"
+        verbose_name_plural = "Превью"
+
+
+class CatalogItem(AbstractModelForCatalog):
+    text = models.TextField(
+        default="",
+        validators=[in_value_validator("превосходно", "роскошно")],
+        verbose_name="Текст",
+    )
+    category = models.ForeignKey(
+        CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
+    )
+    tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
+
+    photo = models.OneToOneField(Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True)
+
+    def image_tmb(self):
+        if self.photo and self.photo.upload:
+            return mark_safe(f'<img src="{self.photo.get_img.url}">')
+        return "Нет изображения"
+
+    image_tmb.short_description = "Превью"
+    image_tmb.allow_tags = True
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = "Товар"
+        verbose_name_plural = "Товары"
+
+
+class Photos(models.Model):
     item = models.ForeignKey(
         CatalogItem, on_delete=models.CASCADE, related_name="photos"
     )
     photo = models.ImageField(upload_to="photos/")
 
     def save(self, *args, **kwargs):
-        super(Photo, self).save(*args, **kwargs)
+        super(Photos, self).save(*args, **kwargs)
         img = Image.open(self.photo.path)
         if img.height > 300 or img.width > 300:
             img.thumbnail((300, 300))
