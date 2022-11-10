@@ -81,7 +81,7 @@ class CatalogItem(AbstractModelForCatalog):
     )
     tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
 
-    photo = models.OneToOneField(Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True)
+    photo = models.OneToOneField(Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True, blank=True)
 
     def image_tmb(self):
         if self.photo and self.photo.upload:
