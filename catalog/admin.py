@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import CatalogTag, CatalogItem, CatalogCategory, Photo, Photos
+from django_summernote.admin import SummernoteModelAdmin
 
 # Register your models here.
 
@@ -17,7 +18,7 @@ class PhotoAdmin(admin.ModelAdmin):
 
 
 @admin.register(CatalogItem)
-class ItemAdmin(admin.ModelAdmin):
+class ItemAdmin(SummernoteModelAdmin):
     list_display = (
         "name",
         "is_published",
@@ -25,6 +26,7 @@ class ItemAdmin(admin.ModelAdmin):
     )
     filter_horizontal = ("tags",)
     inlines = [PhotosAdmin]
+    summernote_fields = ('text',)
 
     def get_list_editable(self, request):
         """
