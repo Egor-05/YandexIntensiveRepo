@@ -80,8 +80,8 @@ class CatalogItem(AbstractModelForCatalog):
         CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
     )
     tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
-
     photo = models.OneToOneField(Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True, blank=True)
+    is_on_main = models.BooleanField(default=False, verbose_name="Is_on_main")
 
     def image_tmb(self):
         if self.photo and self.photo.upload:

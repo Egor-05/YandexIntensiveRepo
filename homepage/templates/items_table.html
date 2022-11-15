@@ -1,0 +1,20 @@
+<table class="table shadow table-striped">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th class="col-3" scope="col">Название</th>
+            <th class="col-3" scope="col">Категория</th>
+            <th class="col-3" scope="col">Описание</th>
+            <th class="col-3" scope="col">Названия тэгов</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in items %}
+        <tr class="table-light" id="{{ item.4 }}">
+            <td>{{ item.0 }}</td>
+            <td>{{ item.1 }}</td>
+            <td>{{ item.2 }}</td>
+            <td>{{ item.3 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
