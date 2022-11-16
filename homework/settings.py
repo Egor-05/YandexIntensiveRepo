@@ -13,6 +13,10 @@ DEBUG = os.getenv("DEBUG", default=False)
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    "127.0.0.1"
+]
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -28,6 +32,7 @@ INSTALLED_APPS = [
     "catalog.apps.CatalogConfig",
     "core.apps.CoreConfig",
     "homepage.apps.HomepageConfig",
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -38,6 +43,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = "homework.urls"

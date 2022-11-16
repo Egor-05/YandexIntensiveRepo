@@ -1,31 +1,21 @@
 from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
 from .models import CatalogCategory, CatalogTag, CatalogItem
+from django.urls import reverse
 
 
-# Create your tests here.
 class StaticURLTests(TestCase):
     def test_catalog_page_endpoint(self):
         response = Client().get("/catalog/")
-        self.assertEqual(response.status_code, 200)
-
-    def test_catalog_info_page_endpoint(self):
-        response = Client().get("/catalog/1/")
         self.assertEqual(response.status_code, 200)
 
     def negative_test_catalog_value_endpoint(self):
         for i in [2.24, -3, "2wjoiui2", 0]:
             url = f"/catalog/{i}/"
             response = Client().get(url)
+            print(response.status_code)
             with self.subTest(url=url):
                 self.assertEqual(response.status_code, 404)
-
-    def test_catalog_value_endpoint(self):
-        for i in [1, 2, 200000000]:
-            url = f"/catalog/{i}/"
-            response = Client().get(url)
-            with self.subTest(url=url):
-                self.assertEqual(response.status_code, 200)
 
 
 class ModelsTests(TestCase):
@@ -138,3 +128,9 @@ class ModelsTests(TestCase):
             self.category1.save()
 
         self.assertEqual(category_count, CatalogCategory.objects.count())
+
+
+class TaskPagesTest(TestCase):
+    def test_homepage_context_is_right(self):
+        response = Client().get(reverse("catalog:catalog"))
+        self.assertIn('items', response.context)
