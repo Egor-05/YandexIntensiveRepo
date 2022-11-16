@@ -6,7 +6,7 @@ from .models import CatalogItem
 
 def item_list(request):
     items = []
-    for i in CatalogItem.objects.filter(is_on_main=True):
+    for i in CatalogItem.objects.filter(is_on_main=True, is_published=True):
         items.append([i.name, i.category.name, i.text[:10], ', '.join([j.name for j in i.tags.all()]), i.id])
     items.sort(key=lambda x: x[0])
     context = {'title': 'Список товаров', 'items': items}
@@ -14,7 +14,7 @@ def item_list(request):
 
 
 def item_details(request, num):
-    item = get_object_or_404(CatalogItem, id=num)
+    item = get_object_or_404(CatalogItem, id=num, is_published=True)
     context = {'title': 'Подробно о товаре',
                'item': [item.name,
                         item.category.name,
