@@ -131,6 +131,6 @@ class ModelsTests(TestCase):
 
 
 class TaskPagesTest(TestCase):
-    def test_homepage_context_is_right(self):
+    def test_catalog_context_is_right(self):
         response = Client().get(reverse("catalog:catalog"))
         self.assertIn('items', response.context)
