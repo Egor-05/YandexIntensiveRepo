@@ -12,6 +12,5 @@ def item_list(request):
 
 def item_details(request, num):
     item = get_object_or_404(CatalogItem, id=num, is_published=True)
-    a = [item.name, item.category.name, item.text, ', '.join([j.name for j in item.tags.all()])]
-    context = {'title': 'Список товаров', 'item': a}
+    context = {'title': 'Список товаров', 'item': item}
     return render(request, "item_details.html", context)

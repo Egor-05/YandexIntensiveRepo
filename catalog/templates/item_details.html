@@ -2,10 +2,14 @@
 {% block content %}
 <div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">{{ item.0 }}</h5>
-    <h6 class="card-subtitle mb-2 text-muted">{{ item.1 }}</h6>
-    <p class="card-text">Описание:<br>{{ item.2 }}</p>
-    <p class="card-text">Тэги:<br>{{ item.3 }}</p>
+    <h5 class="card-title">{{ item.name }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ item.category.name }}</h6>
+    <p class="card-text">Описание:<br>{{ item.text }}</p>
+    <p class="card-text">Тэги:<br>
+      {% for i in item.tags.all %}
+        {{ i }}
+      {% endfor %}
+    </p>
   </div>
 </div>
 {% endblock %}
