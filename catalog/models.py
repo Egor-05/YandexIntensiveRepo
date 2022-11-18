@@ -9,7 +9,16 @@ from PIL import Image
 # Create your models here.
 
 
+class CategoryManager(models.Manager):
+    def published(self):
+        return (self.get_queryset()
+                    .filter(is_published=True)
+                    .order_by('name'))
+
+
 class CatalogCategory(AbstractModelForCatalog):
+    objects = CategoryManager()
+
     slug = models.CharField(
         unique=True,
         default="",
@@ -70,7 +79,24 @@ class Photo(models.Model):
         verbose_name_plural = "Превью"
 
 
+class ItemManager(models.Manager):
+    def published(self, pk, is_on_main):
+        if is_on_main:
+            return (self.get_queryset()
+                        .filter(is_published=True,
+                                is_on_main=True,
+                                category=pk)
+                        .order_by('name'))
+        else:
+            return (self.get_queryset()
+                    .filter(is_published=True,
+                            category=pk)
+                    .order_by('name'))
+
+
 class CatalogItem(AbstractModelForCatalog):
+    objects = ItemManager()
+
     text = models.TextField(
         default="",
         validators=[in_value_validator("превосходно", "роскошно")],

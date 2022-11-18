@@ -1,12 +1,18 @@
 from django.shortcuts import render, get_object_or_404
-from .models import CatalogItem
+from .models import CatalogItem, CatalogCategory
 
 # Create your views here.
 
 
 def item_list(request):
-    items = CatalogItem.objects.filter(is_published=True).order_by('name')
-    context = {'title': 'Список товаров', 'items': items}
+    lst = []
+    categories = CatalogCategory.objects.published()
+    print(categories)
+    for i in categories:
+        items = CatalogItem.objects.published(i, False)
+        if items:
+            lst.append([i.name, items])
+    context = {'title': 'Список товаров', 'dct': lst}
     return render(request, "catalog.html", context)
 
 

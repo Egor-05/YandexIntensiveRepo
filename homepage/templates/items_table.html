@@ -2,24 +2,27 @@
     <thead class="bg-primary text-white">
         <tr>
             <th class="col-3" scope="col">Название</th>
-            <th class="col-3" scope="col">Категория</th>
             <th class="col-3" scope="col">Описание</th>
             <th class="col-3" scope="col">Названия тэгов</th>
         </tr>
     </thead>
     <tbody>
-        {% for item in items %}
-        <tr class="table-light" id="{{ item.id }}">
-            <td><a href="./catalog/{{ item.id }}">{{ item.name }}</a></td>
-            <td>{{ item.category }}</td>
+        {% for i in dct %}
+            <tr class="table-light">
+                  <td colspan="3">{{ i.0 }}</td>
+            </tr>
+            {% for item in i.1 %}
+            <tr class="table-light" id="{{ item.id }}">
+                <td><a href="./catalog/{{ item.id }}">{{ item.name }}</a></td>
 
-            <td>{{ item.text|truncatewords_html:10 }}</td>
-            <td>
-                {% for i in item.tags.all %}
-                    {{ i }}
-                {% endfor %}
-            </td>
-        </tr>
+                <td>{{ item.text|truncatewords_html:10 }}</td>
+                <td>
+                    {% for i in item.tags.all %}
+                        {{ i }}
+                    {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
         {% endfor %}
     </tbody>
 </table>
