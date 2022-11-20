@@ -4,7 +4,7 @@
   <div class="card-body">
     <h5 class="card-title">{{ item.name }}</h5>
     <h6 class="card-subtitle mb-2 text-muted">{{ item.category.name }}</h6>
-    <p class="card-text">Описание:<br>{{ item.text }}</p>
+    <p class="card-text">Описание:<br>{{ item.text|safe }}</p>
     <p class="card-text">Тэги:<br>
       {% for i in item.tags.all %}
         {{ i }}

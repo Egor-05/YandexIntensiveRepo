@@ -10,7 +10,7 @@
     <tbody>
         {% for item in items %}
         <tr class="table-light" id="{{ item.id }}">
-            <td><a href="./catalog/{{ item.id }}">{{ item.name }}</a></td>
+            <td><a href="../catalog/{{ item.id }}">{{ item.name }}</a></td>
             <td>{{ item.category }}</td>
 
             <td>{{ item.text|truncatewords_html:10 }}</td>
