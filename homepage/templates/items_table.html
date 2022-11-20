@@ -13,9 +13,9 @@
             </tr>
             {% for item in i.1 %}
             <tr class="table-light" id="{{ item.id }}">
-                <td><a href="./catalog/{{ item.id }}">{{ item.name }}</a></td>
+                <td><a href="../catalog/{{ item.id }}">{{ item.name }}</a></td>
 
-                <td>{{ item.text|truncatewords_html:10 }}</td>
+                <td>{{ item.text|safe|truncatewords_html:10 }}</td>
                 <td>
                     {% for i in item.tags.all %}
                         {{ i }}
