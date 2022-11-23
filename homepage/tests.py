@@ -12,4 +12,4 @@ class StaticURLTests(TestCase):
 class TaskPagesTest(TestCase):
     def test_homepage_context_is_right(self):
         response = Client().get(reverse("homepage:home"))
-        self.assertIn('items', response.context)
+        self.assertIn('dct', response.context)
