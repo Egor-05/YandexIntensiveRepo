@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from catalog.models import CatalogItem, CatalogCategory
+
+from catalog.models import CatalogCategory, CatalogItem
 
 
 def home(request):
@@ -9,5 +10,5 @@ def home(request):
         items = CatalogItem.objects.published(i, True)
         if items:
             lst.append([i.name, items])
-    context = {'title': 'Главная', 'dct': lst}
+    context = {"title": "Главная", "dct": lst}
     return render(request, "homepage.html", context)

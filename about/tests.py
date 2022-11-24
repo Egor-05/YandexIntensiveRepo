@@ -1,7 +1,6 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 
 
-# Create your tests here.
 class StaticURLTests(TestCase):
     def test_about_page_endpoint(self):
         response = Client().get("/about/")

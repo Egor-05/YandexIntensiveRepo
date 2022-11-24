@@ -7,20 +7,30 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Feedback',
+            name="Feedback",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('text', models.TextField(verbose_name='Текст')),
-                ('created_at', models.DateTimeField(editable=False, verbose_name='Дата создания')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("text", models.TextField(verbose_name="Текст")),
+                (
+                    "created_at",
+                    models.DateTimeField(editable=False, verbose_name="Дата создания"),
+                ),
             ],
             options={
-                'verbose_name': 'Обратная связь',
-                'verbose_name_plural': 'Обратная связь',
+                "verbose_name": "Обратная связь",
+                "verbose_name_plural": "Обратная связь",
             },
         ),
     ]

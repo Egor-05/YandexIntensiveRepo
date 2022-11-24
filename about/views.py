@@ -4,4 +4,4 @@ from django.shortcuts import render
 
 
 def description(request):
-    return render(request, "about.html", {'title': 'О проекте'})
+    return render(request, "about.html", {"title": "О проекте"})

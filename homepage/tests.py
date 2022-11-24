@@ -1,8 +1,7 @@
-from django.test import TestCase, Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
 
-# Create your tests here.
 class StaticURLTests(TestCase):
     def test_homepage_endpoint(self):
         response = Client().get("/")
@@ -12,4 +11,4 @@ class StaticURLTests(TestCase):
 class TaskPagesTest(TestCase):
     def test_homepage_context_is_right(self):
         response = Client().get(reverse("homepage:home"))
-        self.assertIn('dct', response.context)
+        self.assertIn("dct", response.context)

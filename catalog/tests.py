@@ -1,7 +1,8 @@
-from django.test import TestCase, Client
 from django.core.exceptions import ValidationError
-from .models import CatalogCategory, CatalogTag, CatalogItem
+from django.test import Client, TestCase
 from django.urls import reverse
+
+from .models import CatalogCategory, CatalogItem, CatalogTag
 
 
 class StaticURLTests(TestCase):
@@ -133,4 +134,4 @@ class ModelsTests(TestCase):
 class TaskPagesTest(TestCase):
     def test_catalog_context_is_right(self):
         response = Client().get(reverse("catalog:catalog"))
-        self.assertIn('dct', response.context)
+        self.assertIn("dct", response.context)

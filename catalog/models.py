@@ -1,19 +1,18 @@
 from django.db import models
-from .validators import in_value_validator, only_chars_validator, num_compare_validator
-from core.models import AbstractModelForCatalog
-from sorl.thumbnail import get_thumbnail
 from django.utils.safestring import mark_safe
 from PIL import Image
+from sorl.thumbnail import get_thumbnail
 
+from core.models import AbstractModelForCatalog
+
+from .validators import in_value_validator, num_compare_validator, only_chars_validator
 
 # Create your models here.
 
 
 class CategoryManager(models.Manager):
     def published(self):
-        return (self.get_queryset()
-                    .filter(is_published=True)
-                    .order_by('name'))
+        return self.get_queryset().filter(is_published=True).order_by("name")
 
 
 class CatalogCategory(AbstractModelForCatalog):
@@ -82,16 +81,17 @@ class Photo(models.Model):
 class ItemManager(models.Manager):
     def published(self, pk, is_on_main):
         if is_on_main:
-            return (self.get_queryset()
-                        .filter(is_published=True,
-                                is_on_main=True,
-                                category=pk)
-                        .order_by('name'))
+            return (
+                self.get_queryset()
+                .filter(is_published=True, is_on_main=True, category=pk)
+                .order_by("name")
+            )
         else:
-            return (self.get_queryset()
-                    .filter(is_published=True,
-                            category=pk)
-                    .order_by('name'))
+            return (
+                self.get_queryset()
+                .filter(is_published=True, category=pk)
+                .order_by("name")
+            )
 
 
 class CatalogItem(AbstractModelForCatalog):
@@ -106,7 +106,9 @@ class CatalogItem(AbstractModelForCatalog):
         CatalogCategory, on_delete=models.CASCADE, verbose_name="Категория"
     )
     tags = models.ManyToManyField(CatalogTag, verbose_name="Тэги")
-    photo = models.OneToOneField(Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True, blank=True)
+    photo = models.OneToOneField(
+        Photo, on_delete=models.CASCADE, verbose_name="Превью", null=True, blank=True
+    )
     is_on_main = models.BooleanField(default=False, verbose_name="Is_on_main")
 
     def image_tmb(self):
