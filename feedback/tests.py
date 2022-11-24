@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.urls import reverse
 
 from .forms import FeedbackForm
+from.models import Feedback
 
 # Create your tests here.
 
@@ -25,6 +26,8 @@ class FormTests(TestCase):
         self.assertIn('form', response.context)
 
     def test_redirect_is_correct(self):
+        form_count = Feedback.objects.count()
+
         form_data = {
             "text": "123456789"
         }
@@ -36,3 +39,4 @@ class FormTests(TestCase):
         )
 
         self.assertRedirects(response, reverse("feedback:feedback"))
+        self.assertEqual(form_count + 1, Feedback.objects.count())
