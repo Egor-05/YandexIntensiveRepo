@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 
+import django.core.mail.backends.filebased
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -114,5 +115,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = BASE_DIR / "send_mail"
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
