@@ -16,6 +16,9 @@ ALLOWED_HOSTS = []
 
 INTERNAL_IPS = ["127.0.0.1"]
 
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = '/'
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -32,6 +35,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "feedback.apps.FeedbackConfig",
     "homepage.apps.HomepageConfig",
+    "users.apps.UsersConfig",
     "debug_toolbar",
 ]
 
@@ -51,7 +55,7 @@ ROOT_URLCONF = "homework.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
