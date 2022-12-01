@@ -1,5 +1,4 @@
 from datetime import datetime
-from os import mkdir, path
 
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect

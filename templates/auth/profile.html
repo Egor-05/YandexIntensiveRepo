@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="container mt-3">
 <h2>Регистрация</h2>
+
  <form method="post">
     {% csrf_token %}
+
     {% for field in form %}
       <p>
         {{ field.label_tag }}<br>
@@ -17,13 +20,10 @@
                 </div>
             {% endfor %}
         {% endfor %}
-        {% for error in form.non_field_errors %}
-            <div class="alert alert-danger">
-               {{ error|escape }}
-            </div>
-        {% endfor %}
+
       </p>
     {% endfor %}
-    <button type="submit">Sign up</button>
+    <button type="submit">Изменить данные</button>
   </form>
 {% endblock %}
+</div>

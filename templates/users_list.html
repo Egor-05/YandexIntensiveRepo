@@ -1,0 +1,16 @@
+<table class="table shadow table-striped">
+    <thead class="bg-primary text-white">
+        <tr>
+            <th class="col-3" scope="col">Имя пользователя</th>
+            <th class="col-3" scope="col">Адрес почты</th>
+        </tr>
+    </thead>
+    <tbody>
+          {% for user in users %}
+          <tr class="table-light" id="{{ user.id }}">
+              <td><a href="../users/{{ user.id }}">{{ user.username }}</a></td>
+              <td>{{ user.email }}</td>
+          </tr>
+          {% endfor %}
+    </tbody>
+</table>

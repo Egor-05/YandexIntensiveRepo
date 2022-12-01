@@ -10,7 +10,9 @@ urlpatterns = [
     path("", include(("catalog.urls", "catalog"), namespace="catalog")),
     path("", include(("about.urls", "about"), namespace="about")),
     path("", include(("feedback.urls", "feedback"), namespace="feedback")),
+    path("", include("users.urls")),
     path("summernote/", include("django_summernote.urls")),
+    path("", include("django.contrib.auth.urls")),
 ]
 
 if settings.DEBUG:

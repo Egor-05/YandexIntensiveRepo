@@ -9,21 +9,31 @@
         <li class="nav-item"><a href="/catalog" class="nav-link">Список товаров</a></li>
         <li class="nav-item"><a href="/about" class="nav-link">О проекте</a></li>
         <li class="nav-item"><a href="/feedback" class="nav-link">Обратная связь</a></li>
+        <li class="nav-item"><a href="/users" class="nav-link">Список пользователей</a></li>
       {% elif view_name == 'catalog:catalog' %}
         <li class="nav-item"><a href="{% url 'homepage:home' %}" class="nav-link">Главная</a></li>
         <li class="nav-item"><a href="/catalog" class="nav-link disabled">Список товаров</a></li>
         <li class="nav-item"><a href="/about" class="nav-link">О проекте</a></li>
         <li class="nav-item"><a href="/feedback" class="nav-link">Обратная связь</a></li>
+        <li class="nav-item"><a href="/users" class="nav-link">Список пользователей</a></li>
       {% elif view_name == 'about:about' %}
         <li class="nav-item"><a href="{% url 'homepage:home' %}" class="nav-link">Главная</a></li>
         <li class="nav-item"><a href="/catalog" class="nav-link">Список товаров</a></li>
         <li class="nav-item"><a href="/about" class="nav-link disabled">О проекте</a></li>
         <li class="nav-item"><a href="/feedback" class="nav-link">Обратная связь</a></li>
-      {% else %}
+        <li class="nav-item"><a href="/users" class="nav-link">Список пользователей</a></li>
+      {% elif view_name == 'feedback:feedback' %}
         <li class="nav-item"><a href="{% url 'homepage:home' %}" class="nav-link">Главная</a></li>
         <li class="nav-item"><a href="/catalog" class="nav-link">Список товаров</a></li>
         <li class="nav-item"><a href="/about" class="nav-link">О проекте</a></li>
         <li class="nav-item"><a href="/feedback" class="nav-link disabled">Обратная связь</a></li>
+        <li class="nav-item"><a href="/users" class="nav-link">Список пользователей</a></li>
+      {% else %}
+        <li class="nav-item"><a href="{% url 'homepage:home' %}" class="nav-link">Главная</a></li>
+        <li class="nav-item"><a href="/catalog" class="nav-link">Список товаров</a></li>
+        <li class="nav-item"><a href="/about" class="nav-link">О проекте</a></li>
+        <li class="nav-item"><a href="/feedback" class="nav-link">О проекте</a></li>
+        <li class="nav-item"><a href="/users" class="nav-link disabled">Список пользователей</a></li>
       {% endif %}
     {% endwith %}
   </ul>
