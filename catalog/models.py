@@ -5,7 +5,8 @@ from sorl.thumbnail import get_thumbnail
 
 from core.models import AbstractModelForCatalog
 
-from .validators import in_value_validator, num_compare_validator, only_chars_validator
+from .validators import (in_value_validator, num_compare_validator,
+                         only_chars_validator)
 
 # Create your models here.
 
