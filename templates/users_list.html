@@ -3,6 +3,8 @@
         <tr>
             <th class="col-3" scope="col">Имя пользователя</th>
             <th class="col-3" scope="col">Адрес почты</th>
+            <th class="col-3" scope="col">Имя</th>
+            <th class="col-3" scope="col">Фамилия</th>
         </tr>
     </thead>
     <tbody>
@@ -10,6 +12,8 @@
           <tr class="table-light" id="{{ user.id }}">
               <td><a href="../users/{{ user.id }}">{{ user.username }}</a></td>
               <td>{{ user.email }}</td>
+              <td>{{ user.first_name }}</td>
+              <td>{{ user.last_name }}</td>
           </tr>
           {% endfor %}
     </tbody>
